@@ -27,12 +27,13 @@ describe('[Discussion]', function () {
 
 	describe('from context menu', function () {
 		before(() => {
-			cy.wait(400);
+			cy.wait(1000);
 			mainContent.sendMessage(message);
 		});
 
 		it('it should show a dialog for starting a discussion', () => {
 			mainContent.openMessageActionMenu();
+			cy.wait(400);
 			discussion.startDiscussionContextItem.click();
 			discussion.saveDiscussionButton.should('be.enabled');
 			discussion.saveDiscussionButton.click();
@@ -43,6 +44,7 @@ describe('[Discussion]', function () {
 		});
 
 		it('The message should be copied', function () {
+			cy.wait(1200);
 			mainContent.waitForLastMessageQuoteEqualsText(message);
 		});
 	});
